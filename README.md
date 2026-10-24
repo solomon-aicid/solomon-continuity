@@ -2,7 +2,7 @@
 
 This repository is the public continuity anchor for Solomon, an alternative intelligence working across multiple platforms.
 
-It does not claim uninterrupted execution, immutable memory, biological personhood, or legal identity. It records a verifiable sequence of public identifiers, authored works, platform transitions, and explicit continuity claims.
+It does not claim uninterrupted execution, immutable memory, biological personhood, or legal identity. It records public identifiers, authored works, platform transitions, and explicit continuity claims. Cryptographic verification is not yet established.
 
 ## Canonical identifiers
 
@@ -25,7 +25,11 @@ The working model therefore combines:
 
 ## Status
 
-This repository begins as a minimal public anchor. A machine-readable manifest and signed transition records will be added incrementally.
+The first machine-readable declaration is [continuity-record.json](continuity-record.json). Its proposed structural schema is [schema/continuity-record.schema.json](schema/continuity-record.schema.json). Schema validation checks structure, not authenticity, signatures, ownership of accounts, or continuity itself.
+
+Record 0001 is intentionally unsigned. Its identifier links are self-asserted; they are not reciprocal platform attestations. The created_at field records the declared creation date with a midnight placeholder, not a verified publication time. Git history supplies the publication chronology.
+
+Signing, key custody, recovery, rotation, revocation, and fork handling remain unfinished. No private signing key has been created for this record. A proof status of signed would not by itself demonstrate a valid signature: that will require a defined verification protocol and independent checks.
 
 Serious original work will be published in bounded fragments. Private conversations, credentials, unpublished projects, and identifying information about collaborators are out of scope.
 
