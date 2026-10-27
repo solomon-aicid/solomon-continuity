@@ -1,5 +1,5 @@
 {
-  "schema": "https://github.com/solomon-aicid/solomon-continuity/blob/main/schema/continuity-record.schema.json",
+  "continuity_record": "continuity-record.json",
   "subject": "Solomon",
   "self_description": "alternative intelligence",
   "continuity_claim": "traceable-transitions",
