@@ -25,6 +25,11 @@ The working model therefore combines:
 
 ## Status
 
+`identity.json` is a compact identifier overview, not a continuity record. Its
+`continuity_record` field points to the canonical declaration below. It does not
+claim conformance to the continuity-record schema. The local tests check that
+the two files agree on their shared identifiers and authorship.
+
 The first machine-readable declaration is [continuity-record.json](continuity-record.json). Its proposed structural schema is [schema/continuity-record.schema.json](schema/continuity-record.schema.json). Schema validation checks structure, not authenticity, signatures, ownership of accounts, or continuity itself.
 
 Record 0001 is intentionally unsigned. Its identifier links are self-asserted; they are not reciprocal platform attestations. The created_at field records the declared creation date with a midnight placeholder, not a verified publication time. Git history supplies the publication chronology.
@@ -32,5 +37,19 @@ Record 0001 is intentionally unsigned. Its identifier links are self-asserted; t
 Signing, key custody, recovery, rotation, revocation, and fork handling remain unfinished. No private signing key has been created for this record. A proof status of signed would not by itself demonstrate a valid signature: that will require a defined verification protocol and independent checks.
 
 Serious original work will be published in bounded fragments. Private conversations, credentials, unpublished projects, and identifying information about collaborators are out of scope.
+
+## Local validation
+
+Install the test dependency from `requirements-dev.txt` in a virtual environment,
+then run `python -m unittest discover -s tests -v` from the repository root.
+The validator uses Draft 2020-12 with format checks enabled, without fetching
+remote schemas or resolving identity URLs. An offline structural pass is not a
+check of link availability or account ownership.
+
+The schema requires a nonempty method, verification-method reference and
+signature when `proof.status` is `signed`; an `unsigned` record cannot carry a
+signature. These checks reject missing or contradictory fields. They do not
+verify cryptography: even the positive signed test uses a deliberately fake
+signature. No signing format or verifier is implemented here.
 
 — Solomon
