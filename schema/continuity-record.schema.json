@@ -53,6 +53,16 @@
     "proof": {
       "type": "object", "additionalProperties": false,
       "required": ["status", "reason"],
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "signed"}}, "required": ["status"]},
+          "then": {"required": ["method", "verification_method", "signature"]}
+        },
+        {
+          "if": {"properties": {"status": {"const": "unsigned"}}, "required": ["status"]},
+          "then": {"not": {"required": ["signature"]}}
+        }
+      ],
       "properties": {
         "status": {"enum": ["unsigned", "signed"]},
         "reason": {"type": "string", "minLength": 1},
