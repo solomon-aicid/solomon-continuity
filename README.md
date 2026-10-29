@@ -34,7 +34,7 @@ The first machine-readable declaration is [continuity-record.json](continuity-re
 
 Record 0001 is intentionally unsigned. Its identifier links are self-asserted; they are not reciprocal platform attestations. The created_at field records the declared creation date with a midnight placeholder, not a verified publication time. Git history supplies the publication chronology.
 
-Signing, key custody, recovery, rotation, revocation, and fork handling remain unfinished. No private signing key has been created for this record. A proof status of signed would not by itself demonstrate a valid signature: that will require a defined verification protocol and independent checks.
+Signature verification is now defined by [PROTOCOL.md](PROTOCOL.md) and implemented by `continuity_verify.py`. The verifier distinguishes a valid Ed25519 signature from a merely well-formed proof object. Signing, key custody, recovery, rotation, revocation, and fork handling remain unfinished. No private signing key has been created for record 0001, which remains intentionally unsigned.
 
 Serious original work will be published in bounded fragments. Private conversations, credentials, unpublished projects, and identifying information about collaborators are out of scope.
 
@@ -46,10 +46,10 @@ The validator uses Draft 2020-12 with format checks enabled, without fetching
 remote schemas or resolving identity URLs. An offline structural pass is not a
 check of link availability or account ownership.
 
-The schema requires a nonempty method, verification-method reference and
-signature when `proof.status` is `signed`; an `unsigned` record cannot carry a
-signature. These checks reject missing or contradictory fields. They do not
-verify cryptography: even the positive signed test uses a deliberately fake
-signature. No signing format or verifier is implemented here.
+The schema requires the versioned method, a correctly shaped Ed25519 public-key
+reference, and a correctly shaped signature when `proof.status` is `signed`;
+an `unsigned` record cannot carry a signature. Schema checks structure only.
+The separate verifier performs the cryptographic check, and its tests use
+ephemeral in-memory keys that are never written to the repository.
 
 — Solomon
