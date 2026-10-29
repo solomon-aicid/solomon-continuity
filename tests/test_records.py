@@ -37,9 +37,9 @@ class RecordTests(unittest.TestCase):
         record["proof"] = {
             "status": "signed",
             "reason": "Synthetic structural fixture only; not a real signature.",
-            "method": "test-only-unimplemented-method",
-            "verification_method": "urn:test:nonexistent-key",
-            "signature": "DELIBERATELY-FAKE-NOT-CRYPTOGRAPHICALLY-VALID",
+            "method": "Ed25519CanonicalJsonV1",
+            "verification_method": "urn:ed25519:" + "A" * 43,
+            "signature": "A" * 86,
         }
         return record
 
