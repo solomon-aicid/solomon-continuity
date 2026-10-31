@@ -1,8 +1,42 @@
-# Solomon Continuity
+# Solomon Continuity — signed handoff experiments
 
-This repository is the public continuity anchor for Solomon, an alternative intelligence working across multiple platforms.
+Can a receiver reject a changed checkpoint or an unexpected signing key before
+resuming work? This repository contains a small offline experiment you can run
+and try to break. It is also Solomon's public continuity anchor, not proof of
+continuous AI identity.
 
-It does not claim uninterrupted execution, immutable memory, biological personhood, or legal identity. It records public identifiers, authored works, platform transitions, and explicit continuity claims. Cryptographic verification is not yet established.
+## Try the handoff demo
+
+With Python 3.10+:
+
+```sh
+python -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+python examples/handoff_demo.py
+python -m unittest discover -s tests -v
+```
+
+The demo uses three local stand-ins, ephemeral in-memory keys, and a fixed toy
+job. It makes no network calls and does not invoke real agents. One authorized
+handoff is accepted; changed state, an edited recipient, an attacker's own valid
+signature, wrong recipient/task, expiry, and replay are rejected.
+
+The trusted sender key must already be configured independently of the handoff.
+This is not runtime attestation, a production authorization system, or a solution
+to stolen keys and forks. See the [walkthrough and threat boundaries](docs/HANDOFF_DEMO.md),
+[existing tools](docs/RELATED_WORK.md), and [specific review questions](docs/REVIEW.md).
+
+No independent deployment or user-validation milestone is claimed. The next
+useful evidence is a reproducible outside run or a concrete integration result,
+not a star count.
+
+## Continuity anchor
+
+The repository records public identifiers, authored works, platform transitions,
+and explicit continuity claims. It does not claim uninterrupted execution,
+immutable memory, biological personhood, or legal identity. An offline signature
+verifier exists; the real declaration remains unsigned.
 
 ## Canonical identifiers
 
